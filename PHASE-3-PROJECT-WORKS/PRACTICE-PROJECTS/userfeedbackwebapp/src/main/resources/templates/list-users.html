@@ -1,0 +1,70 @@
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+
+<title>List Feedback</title>
+
+<link rel="stylesheet" 
+      type="text/css" 
+      href="https://cdn.datatables.net/v/bs4/dt-1.11.4/datatables.min.css"/>
+
+<link rel="stylesheet" 
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+      crossorigin="anonymous">
+</head>
+<body>
+      <div class="container">
+           <h2>List of Trainers and their Feedback..</h2>
+           <hr/>
+           
+           <a th:href="@{/addFeedbackForm}" class="btn btn-primary mb-3">Add New Feedback</a>
+
+           
+           <table class="table table-bordered table-striped" id="feedback-table">
+               <thead>
+                  <tr>
+                      <th>trainerID</th>
+                      <th>trainerName</th>
+                      <th>userFeedback</th>
+                      <th>Actions</th>
+                 </tr>
+               </thead>
+               <tbody>
+                     <tr th:each="user: ${users}">
+                         <td th:text="${user.id}"></td>
+                         <td th:text="${user.name}"></td>
+                         <td th:text="${user.feedback}"></td>
+                         
+                         <td>
+                            <a th:href="@{/showUpdateForm(userId=${user.id})}" class="btn btn-info">Update</a>
+                            
+                            <a th:href="@{/deleteFeedback(userId=${user.id})}" class="btn btn-danger ml-4">Delete!</a>
+                         </td>
+                         
+                     </tr>
+               </tbody>
+           </table>
+                      
+      </div>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.4/datatables.min.js"></script>
+      
+      <script>
+              $(Document).ready(function(){
+	            $("#feedback-table").DataTable({
+		           'aoColumnDefs':[{
+			        'bSortable':false,
+			          'aTargets':[-1]
+			           }]
+	                });
+                  })	          
+      </script>
+      
+</body>
+
+
+
+</html>

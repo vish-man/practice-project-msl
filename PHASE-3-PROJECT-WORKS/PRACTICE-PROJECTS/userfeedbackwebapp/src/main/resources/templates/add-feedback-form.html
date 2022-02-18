@@ -1,0 +1,38 @@
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+
+<title>Add Feedback</title>
+<link rel="stylesheet" 
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+      crossorigin="anonymous">
+</head>
+<body>
+      <div class="container">
+      
+           <h2>Add New Feedback</h2>
+           <hr/>
+           
+           <form th:action="@{/saveFeedback}" th:object="${user}" method="POST">
+           
+             <input type"text" th:field="*{name}" placeholder="Enter trainerName" class="form-control col-4 mb-4"/>
+             <input type"text" th:field="*{feedback}" placeholder="Provide Feedback" class="form-control col-4 mb-4"/>
+       
+           <button class="btn btn-primary" type="submit">Save Entries</button>
+           
+                        <input type="hidden" th:field="*{id}"/>
+           
+           <hr/>
+           
+           <a th:href="@{/list}" class="btn btn-primary">Show List</a>
+
+           
+           </form>
+           
+      </div>
+</body>
+
+
+
+</html>
